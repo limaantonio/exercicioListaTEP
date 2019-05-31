@@ -11,6 +11,7 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		
 		double s, tx;
+		boolean e=false;
 		String name;
 		int id, n, ident;
 		ArrayList<Funcionario> list = new ArrayList();
@@ -41,9 +42,13 @@ public class Program {
 				tx = sc.nextDouble();	
 				f.aumentaSalario(tx);
 			}else {
-				System.out.println("This employee does not exist.");
-				System.exit(0);
+				e=true;
+				
 			}
+		}
+		if(e==true) {
+			System.out.println("This employee does not exist.");
+			System.exit(0);
 		}
 		System.out.println("List of employee");
 		for(Funcionario f : list) {
