@@ -7,20 +7,20 @@ import java.util.Scanner;
 public class Program {
 
 	public static void main(String[] args) {
-		
+
 		Locale.setDefault(Locale.US);
-		
+
 		double s, tx;
-		boolean e=false;
+		boolean e = false;
 		String name;
-		int id, n, ident;
+		int id, n, ident, t = 0;
 		ArrayList<Funcionario> list = new ArrayList();
-		
+
 		Scanner sc = new Scanner(System.in);
 		n = sc.nextInt();
-		
-		for(int i=0; i<n; i++) {
-			System.out.printf("Employer #%d:\n",i+1);
+
+		for (int i = 0; i < n; i++) {
+			System.out.printf("Employer #%d:\n", i + 1);
 			System.out.println("Id: ");
 			id = sc.nextInt();
 			System.out.println("Name: ");
@@ -28,32 +28,36 @@ public class Program {
 			name = sc.nextLine();
 			System.out.println("Salary: ");
 			s = sc.nextDouble();
-			
+
 			Funcionario f = new Funcionario(id, name, s);
-			
-			list.add(f);	
+
+			list.add(f);
 		}
 		System.out.println("Enter the employee id that will have salary increase:");
 		ident = sc.nextInt();
-		
-		for(Funcionario f : list) {
-			if(f.getId() == ident) {
+
+		for (Funcionario f : list) {
+			int ind = list.indexOf(f);
+
+			if (f.getId() == ident) {
 				System.out.println("Enter the percentage:");
-				tx = sc.nextDouble();	
+				tx = sc.nextDouble();
 				f.aumentaSalario(tx);
-			}else {
-				e=true;
-				
+
+			}
+			if (f.getId() != ident) {
+				t++;
+				if (t == list.size()) {
+					System.out.println("This employee does not exist.");
+					e = true;
+				}
 			}
 		}
-		if(e==true) {
-			System.out.println("This employee does not exist.");
-			System.exit(0);
-		}
 		System.out.println("List of employee");
-		for(Funcionario f : list) {
-			System.out.println(f.getId()+", "+f.getNome()+", "+f.getSalario());
+		for (Funcionario f : list) {
+			System.out.println(f.getId() + ", " + f.getNome() + ", " + f.getSalario());
 		}
+		if (e == true)
+			System.exit(0);
 	}
-
 }
