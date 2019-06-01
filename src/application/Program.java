@@ -23,6 +23,12 @@ public class Program {
 			System.out.printf("Employer #%d:\n", i + 1);
 			System.out.println("Id: ");
 			id = sc.nextInt();
+			for(Funcionario f : list) {
+				while(id == f.getId()) {
+					System.out.println("Digite um novo ID");
+					id = sc.nextInt();
+				}
+			}
 			System.out.println("Name: ");
 			sc.nextLine();
 			name = sc.nextLine();
